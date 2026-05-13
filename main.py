@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -7,9 +8,15 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Archivos estáticos y plantillas
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount(
+    "/static",
+    StaticFiles(directory=os.path.join(BASE_DIR, "static")),
+    name="static",
+)
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # Base de datos simulada (mensajes en memoria)
 mensajes_db = []
