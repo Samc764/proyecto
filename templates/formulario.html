@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzón de Mensajes</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">📮 Buzón</a>
+        <a href="/muro">📜 Muro</a>
+    </nav>
+
+    <main>
+        <h1>📮 Deja tu mensaje</h1>
+        <p class="subtitulo">Escribe algo y lo verás en el muro.</p>
+
+        <div class="card">
+            <form action="/enviar" method="POST">
+                <label for="autor">Tu nombre</label>
+                <input type="text" id="autor" name="autor" required
+                       placeholder="¿Quién eres?">
+                <label for="color">Tu color favorito</label>
+                <input type="text" id="color" name="color" required
+                         placeholder="Ej: azul, violeta, verde...">
+                         <label for="mensaje">Tu mensaje</label>
+                <textarea id="mensaje" name="mensaje" required
+                          placeholder="¿Qué quieres decir?" rows="4"></textarea>
+
+                <button type="submit" class="btn-enviar">📨 Enviar al muro</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>© {{ ano_actual }} — Buzón de Mensajes</p>
+    </footer>
+</body>
+</html>

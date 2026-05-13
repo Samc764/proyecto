@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muro de Mensajes</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">📮 Buzón</a>
+        <a href="/muro">📜 Muro</a>
+    </nav>
+
+    <main>
+        <h1>📜 Muro de Mensajes</h1>
+
+        {% if mensajes %}
+            <p class="contador">Total de mensajes: {{ mensajes|length }}</p>
+
+            <div class="muro">
+                {% for item in mensajes %}
+                    <div class="mensaje-card">
+                        <span class="num">#{{ loop.index }}</span>
+                        <p class="autor">{{ item.autor }}</p>
+                        <p class="texto">"{{ item.mensaje }}"</p>
+                        <div class="mensaje-card-footer">
+                            <form action="/eliminar/{{ loop.index0 }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn-peligro">🗑️ Borrar</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="vacio">
+                <span class="icono">📭</span>
+                <p style="color: #0e67ff; font-size: 0.85rem;">🎨 Color favorito: {{ item.color }}</p>
+                <p class="mensaje">El muro está vacío. ¡Sé el primero en escribir!</p>
+                <a href="/" class="btn-secundario">📝 Escribir mensaje</a>
+            </div>
+        {% endif %}
+
+        <div class="acciones">
+            <a href="/" class="btn-secundario">📝 Escribir otro mensaje</a>
+        </div>
+    </main>
+    <footer>
+        <p>© {{ ano_actual }} — Buzón de Mensajes</p>
+    </footer>
+</body>
+</html>
